@@ -1,11 +1,28 @@
 # Bem-vindo ao repositório do Kafka, ou melhor, Carlos-kafka!
 
-Neste repositório, você encontrará os arquivos necessários para configurar nossa infraestrutura e executar as seguintes aplicações:
+Neste repositório, você encontrará os arquivos necessários para configurar nossa infraestrutura utilizando as seguintes tecnologias:
 
-- Kafka
-- Zookeeper
-- Prometheus
-- Grafana
+- Kafka 3.4.0
+- Zookeeper 7.6.0 (latest)
+- Prometheus 2.4.9 (latest)
+- Grafana 10.3.1 (latest)
+- Python 3.12.1
+
+
+# Referencias Utilizadas:
+
+Kafka-python Lib
+https://kafka-python.readthedocs.io/en/master/
+
+Confluent
+https://docs.confluent.io/platform/current/installation/docker/operations/monitoring.html
+
+Wurstmeister Kafka Repository:
+https://github.com/wurstmeister/kafka-docker
+
+Chat GPT 3.5
+https://chat.openai.com/
+
 
 Essas aplicações são executadas usando um arquivo compose do Docker.
 
@@ -70,9 +87,6 @@ Para acessar o Grafana:
 [Grafana - https://localhost:3000](https://localhost:3000)
 
 
-
-
-
 ## Observações:
 
 No arquivo `Docker-compose.yml`, o serviço "Kafka" está configurado para baixar a imagem "cduarte91/carlos-kafka-3.4" de um repositório público.
@@ -84,3 +98,8 @@ docker build -t carlos-kafka-3.4 .
 ```
 
 Além disso, é necessário alterar a linha 13 do arquivo `Docker-compose.yml`, substituindo "cduarte91/carlos-kafka-3.4" por apenas "carlos-kafka-3.4".
+
+
+
+
+
