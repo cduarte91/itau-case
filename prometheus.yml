@@ -1,8 +1,8 @@
 global:
- scrape_interval: 15s
+  scrape_interval: 15s
 
 
 scrape_configs:
- - job_name: 'kafka'
-   static_configs:
-     - targets: ['jmxexporter:5556']  # Porta onde o servidor JMX do Kafka está disponível
+  - job_name: 'kafka'
+    static_configs:
+      - targets: ['jmxexporter:5556']  # Porta onde o servidor JMX do Kafka está disponível

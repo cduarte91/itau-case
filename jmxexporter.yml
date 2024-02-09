@@ -6,4 +6,4 @@ password:
 
 whitelistObjectNames: ["kafka.server:type=BrokerTopicMetrics,*"]
 rules:
- - pattern: ".*"
+  - pattern: ".*"
