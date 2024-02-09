@@ -24,8 +24,7 @@ Chat GPT 3.5
 https://chat.openai.com/
 
 
-
-      
+# Instruções Gerais:      
 
 Essas aplicações são executadas usando um arquivo compose do Docker.
 
