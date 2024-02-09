@@ -24,6 +24,9 @@ Chat GPT 3.5
 https://chat.openai.com/
 
 
+
+      
+
 Essas aplicações são executadas usando um arquivo compose do Docker.
 
 Antes de clonar o repositório, certifique-se de ter instalado o Docker for Desktop. Se ainda não o fez, você pode baixá-lo no link abaixo:
