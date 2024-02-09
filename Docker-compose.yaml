@@ -1,0 +1,66 @@
+version: '2'
+services:
+ zookeeper:
+   container_name: zookeeper
+   image: confluentinc/cp-zookeeper:latest
+   environment:
+     ZOOKEEPER_CLIENT_PORT: 2181
+     ZOOKEEPER_TICK_TIME: 2000
+
+
+ kafka:
+   container_name: kafka
+   image: carlos-kafka-3.4
+   depends_on:
+     - zookeeper
+   ports:
+     - 9092:9092
+     - 7071:7071  # Expor a porta 7071 para acessar o JMX do Kafka
+   environment:
+     KAFKA_BROKER_ID: 1
+     KAFKA_ZOOKEEPER_CONNECTION_TIMEOUT_MS: 6000
+     KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+     KAFKA_LISTENERS: PLAINTEXT://:9092
+     KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+     KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+     KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+     KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+     JMX_PORT: 7071
+     KAFKA_JMX_OPTS: "-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=kafka -Dcom.sun.management.jmxremote.rmi.port=7071"
+ 
+ jmxexporter:
+   image: sscaling/jmx-prometheus-exporter
+   ports:
+     - "5556:5556"
+   environment:
+     SERVICE_PORT: 5556
+   volumes:
+     - $PWD/jmxexporter.yml:/opt/jmx_exporter/config.yml
+
+
+  prometheus:
+   container_name: prometheus
+   image: prom/prometheus:latest
+   depends_on:
+     - kafka
+   ports:
+     - 9090:9090
+   volumes:
+     - ./prometheus.yml:/etc/prometheus/prometheus.yml
+  grafana:
+   container_name: grafana
+   image: grafana/grafana:latest
+   ports:
+     - 3000:3000
+   environment:
+     - GF_SECURITY_ADMIN_PASSWORD=mudar123
+   depends_on:
+     - prometheus
+
+
+volumes:
+ prometheus_data: {}
+
+
+networks:
+ compose-bridge:
