@@ -27,6 +27,40 @@ docker-compose up
 
 E magicamente tudo estará funcionando.
 
+
+Para executar os testes da aplicação, basta conectar no container do kafka (de preferência em dois terminais diferentes) e executar os comandos abaixo:
+
+
+Conectar no container kafka:
+```bash
+docker exec -it kafka /bin/bash
+```
+
+Após conectar no container nos dois terminais, executar os comandos abaixo para validar:
+
+No terminal 1 executar:
+
+Criar o tópico.
+```bash
+python3 create-topic.py
+```
+
+Iniciar o Cosumidor.
+```bash
+python3 consumer.py
+```
+
+No terminal 2 executar:
+
+```bash
+python3 producer.py
+```
+
+
+Após isso, já teremos as mensagens sendo entregues no terminal 1.
+
+
+
 Para acessar o Prometheus, basta utilizar a seguinte URL:
 
 [Prometheus - https://localhost:9090](https://localhost:9090)
@@ -34,6 +68,10 @@ Para acessar o Prometheus, basta utilizar a seguinte URL:
 Para acessar o Grafana:
 
 [Grafana - https://localhost:3000](https://localhost:3000)
+
+
+
+
 
 ## Observações:
 
